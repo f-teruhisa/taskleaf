@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factrory :user do
+  factory :user do
     name { 'テストユーザー' }
     email { 'test@example.com' }
     password { 'password' }
