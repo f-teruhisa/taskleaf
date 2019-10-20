@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      logger.debug "task :#{@task.attribution_name()"
+      logger.debug "task :#{@task.attributes.inspect}"
       redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new
@@ -31,6 +31,11 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
+  end
+
+  def tasks_new
+    @task = current_user.tasks.new(task_params)
+    render :new unless @task.valid?
   end
 
   private
